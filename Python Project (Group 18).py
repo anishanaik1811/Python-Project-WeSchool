@@ -24,7 +24,7 @@ sorted_data[:5]
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import io
+
 from sklearn import linear_model
 df = pd.read_csv (r'C:\Users\Anisha\Desktop\python project.csv')
 df.head()
@@ -53,19 +53,26 @@ reg.predict([[2016]])
 
 from matplotlib import pyplot as plt
 from matplotlib import style
-year=[2010,2010,2011,2012,2013,2014,2015]
+import pandas as pd
+year=[2010,2011,2012,2013,2014,2015]
+df = pd.read_csv (r'C:\Users\Anisha\Desktop\python project.csv')
 myData1 = pd.DataFrame(df, columns = ['Country Name', 'Population (Millions) 2010', 'Population (Millions) 2011', 'Population (Millions) 2012','Population (Millions) 2013','Population (Millions) 2014','Population (Millions) 2015']) 
 rslt_df1 = myData1[myData1['Country Name'] == 'India']
 rslt_df3=rslt_df1.values.tolist()
+
+rslt_dfa=rslt_df3[0]
+rslt_dfb = rslt_dfa[1:]
 
 myData2 = pd.DataFrame(df, columns = ['Country Name', 'GDP Billions (USD) 2010', 'GDP Billions (USD) 2011', 'GDP Billions (USD) 2012','GDP Billions (USD) 2013','GDP Billions (USD) 2014','GDP Billions (USD) 2015']) 
 rslt_df2 = myData2[myData2['Country Name'] == 'India']
 rslt_df4=rslt_df2.values.tolist()
 
+rslt_dfc=rslt_df4[0]
+rslt_dfd = rslt_dfc[1:]
 
 style.use('ggplot')
-plt.plot(year,rslt_df3[0],'g',label='Population')
-plt.plot(year,rslt_df4[0],'c',label='GDP')
+plt.plot(year,rslt_dfb,'g',label='Population')
+plt.plot(year,rslt_dfd,'c',label='GDP')
 
 
 plt.title('Population Growth VS GDP 2010 to 2015')
@@ -74,29 +81,6 @@ plt.ylabel('Population')
 plt.legend
 plt.grid(True)
 plt.show()
-
-
-# In[10]:
-
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import linear_model
-df = pd.read_csv (r'C:\Users\Anisha\Desktop\python project.csv')
-df.head()
-myData1 = pd.DataFrame(df, columns =['Country Name', 'GDP Billions (USD) 2010', 'GDP Billions (USD) 2011', 'GDP Billions (USD) 2012','GDP Billions (USD) 2013','GDP Billions (USD) 2014','GDP Billions (USD) 2015'])  
-rslt_df1 = myData1[myData1['Country Name'] == 'India']
-rslt_df3=rslt_df1.values.tolist()
-rslt_df4=rslt_df3[0]
-rslt_df5 = rslt_df4[1:]
-year=[2010,2011,2012,2013,2014,2015]
-myData2 = pd.DataFrame(list(zip(year,rslt_df5)), 
-               columns =['Year', 'GDP']) 
-myData2
-reg=linear_model.LinearRegression()
-reg.fit(myData2[['Year']],myData2.GDP)
-reg.predict([[2016]])
 
 
 # In[ ]:
@@ -132,6 +116,29 @@ reg.predict([[2016]])
 
 
 #the model predicted value 1692.956 and the actual value as per google was 1670 in 2016
+
+
+# In[5]:
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+df = pd.read_csv (r'C:\Users\Anisha\Desktop\python project.csv')
+df.head()
+myData1 = pd.DataFrame(df, columns =['Country Name', 'GDP Billions (USD) 2010', 'GDP Billions (USD) 2011', 'GDP Billions (USD) 2012','GDP Billions (USD) 2013','GDP Billions (USD) 2014','GDP Billions (USD) 2015'])  
+rslt_df1 = myData1[myData1['Country Name'] == 'India']
+rslt_df3=rslt_df1.values.tolist()
+rslt_df4=rslt_df3[0]
+rslt_df5 = rslt_df4[1:]
+year=[2010,2011,2012,2013,2014,2015]
+myData2 = pd.DataFrame(list(zip(year,rslt_df5)), 
+               columns =['Year', 'GDP']) 
+myData2
+reg=linear_model.LinearRegression()
+reg.fit(myData2[['Year']],myData2.GDP)
+reg.predict([[2016]])
 
 
 # In[18]:
